@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  
+  .ion-page {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ion-header {
+    background-color: #21ce99;
+  }
+  
+  .ion-toolbar {
+    color: #292929;
+  }
+  
+  .ion-title {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #000000;
+  }
+  
+  .ion-button {
+    color: #21ce99;
+    border: 1px solid #21ce99;
+  }
