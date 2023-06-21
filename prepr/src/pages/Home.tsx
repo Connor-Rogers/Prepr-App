@@ -5,7 +5,6 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import "./Home.css";
 import LoginButton from "../components/LoginButton";
@@ -20,24 +19,10 @@ const Home: React.FC = () => {
   }
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>prepr</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">prepr</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <div className="container">
-          <Profile />
-          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        </div>
-      </IonContent>
-    </IonPage>
+    <div className="container">
+      <Profile />
+      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+    </div>
   );
 };
 
