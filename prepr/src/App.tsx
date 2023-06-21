@@ -1,20 +1,19 @@
 import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
+  IonModal,
+  IonRouterOutlet,
+  IonApp,
+  IonButton,
   setupIonicReact,
 } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+import { IonReactRouter,  } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import { App as CapApp } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { callbackUri } from "./auth.config";
 import Home from "./pages/Home";
 import MacronutrientCalculator from "./pages/MacronutrientCalculator";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,8 +39,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { handleRedirectCallback } = useAuth0();
-
+  const { handleRedirectCallback, isAuthenticated } = useAuth0()
   useEffect(() => {
     CapApp.addListener("appUrlOpen", async ({ url }) => {
       if (url.startsWith(callbackUri)) {
@@ -57,21 +55,36 @@ const App: React.FC = () => {
     });
   }, [handleRedirectCallback]);
 
+  const [showModal, setShowModal] = useState(false);
+  ;
+
   return (
-    <IonReactRouter>
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>prepr</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <Route exact path="/calculator" component={MacronutrientCalculator} />
-          <Route exact path="/" component={Home} />
-          <Redirect exact from="*" to="/" />
-        </IonContent>
-      </IonPage>
-    </IonReactRouter>
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <Home />
+            {/* Button to open the Macronutrient Calculator Modal */}
+            <IonButton onClick={() => setShowModal(true)}>
+              Open Macronutrient Calculator
+            </IonButton>
+
+            {/* Modal */}
+            <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
+              {/* Check if user is authenticated before showing content */}
+              {isAuthenticated ? (
+                <MacronutrientCalculator />
+              ) : (
+                <div>You must be logged in to view this content</div>
+              )}
+            </IonModal>
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
   );
 };
 
