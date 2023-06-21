@@ -7,6 +7,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { callbackUri } from "./auth.config";
 import Home from "./pages/Home";
 import MacronutrientCalculator from "./pages/MacronutrientCalculator";
+import RecipePage from "./pages/RecipePage";
+import RecipePageTwo from "./pages/RecipePageTwo";
+import RecipePageThree from "./pages/RecipePageThree";
+import RecipePageFour from "./pages/RecipePageFour";
+import RecipePageFive from "./pages/RecipePageFive";
+import RecipePageSix from "./pages/RecipePageSix";
+import RecipePageSeven from "./pages/RecipePageSeven";
+import WeekView from "./pages/WeekView";
+
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -27,6 +36,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { useEffect } from "react";
+
 
 setupIonicReact({
   mode: "md",
@@ -62,6 +72,30 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
+          </Route>
+          <Route exact path="/recipe1">
+            <RecipePage />
+          </Route>
+          <Route exact path="/recipe2">
+            <RecipePageTwo />
+          </Route>
+          <Route exact path="/recipe3">
+            <RecipePageThree />
+          </Route>
+          <Route exact path="/recipe4">
+            <RecipePageFour />
+          </Route>
+          <Route exact path="/recipe5">
+            <RecipePageFive />
+          </Route>
+          <Route exact path="/recipe6">
+            <RecipePageSix />
+          </Route>
+          <Route exact path="/recipe7">
+            <RecipePageSeven />
+          </Route>
+          <Route exact path="/weekview">
+            <WeekView />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonButton, IonLabel, IonSelect, IonSelectOption, IonItem } from '@ionic/react';
-import "./MacronutrientCalcuator.css";
+import React, { useState } from "react";
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonButton, IonAlert } from "@ionic/react";
 
 const MacronutrientCalculator: React.FC = () => {
   const [sex, setSex] = useState("");
@@ -10,14 +9,17 @@ const MacronutrientCalculator: React.FC = () => {
   const [age, setAge] = useState(0);
   const [activityLevel, setActivityLevel] = useState("");
   const [goal, setGoal] = useState("");
-
+  const [carbs, setCarbs] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const [fats, setFats] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
   const calculateMacros = () => {
     let bmr = 0;
     let tdee = 0;
 
-    const weightInKg = weight / 2.20462;  // convert lbs to kg
-    const heightInCm = ((heightFeet * 12) + heightInches) * 2.54;  // convert feet/inches to cm
+    const weightInKg = weight / 2.20462;
+    const heightInCm = ((heightFeet * 12) + heightInches) * 2.54;
 
     if (sex === "male") {
       bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * age + 5;
@@ -41,22 +43,21 @@ const MacronutrientCalculator: React.FC = () => {
       case "very active":
         tdee = bmr * 1.9;
         break;
+      default:
+        tdee = bmr * 1.2;
     }
 
     if (goal === "lose") {
-        tdee -= 500;
+      tdee -= 500;
     } else if (goal === "gain") {
-        tdee += 500;
+      tdee += 500;
     }
 
-    const carbs = 0.5 * tdee / 4;
-    const protein = 0.25 * tdee / 4;
-    const fats = 0.25 * tdee / 9;
-
-    return { carbs, protein, fats };
-  }
-
-  const { carbs, protein, fats } = calculateMacros();
+    setCarbs(0.5 * tdee / 4);
+    setProtein(0.25 * tdee / 4);
+    setFats(0.25 * tdee / 9);
+    setShowResults(true);
+  };
 
   return (
     <IonPage>
@@ -86,8 +87,8 @@ const MacronutrientCalculator: React.FC = () => {
           <IonInput type="number" value={heightInches} onIonChange={e => setHeightInches(Number(e.detail.value!))}></IonInput>
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Age (years)</IonLabel>
-          <IonInput value={age} onIonChange={e => setAge(Number(e.detail.value))} />
+          <IonLabel>Age</IonLabel>
+          <IonInput type="number" value={age} onIonChange={e => setAge(Number(e.detail.value!))}></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel>Activity Level</IonLabel>
@@ -103,14 +104,19 @@ const MacronutrientCalculator: React.FC = () => {
           <IonLabel>Goal</IonLabel>
           <IonSelect value={goal} onIonChange={e => setGoal(e.detail.value)}>
             <IonSelectOption value="lose">Lose Weight</IonSelectOption>
-            <IonSelectOption value="gain">Gain Weight</IonSelectOption>
             <IonSelectOption value="maintain">Maintain Weight</IonSelectOption>
+            <IonSelectOption value="gain">Gain Weight</IonSelectOption>
           </IonSelect>
         </IonItem>
         <IonButton expand="full" onClick={calculateMacros}>Calculate</IonButton>
-        <IonLabel>Carbohydrates: {carbs.toFixed(2)}g</IonLabel>
-        <IonLabel>Protein: {protein.toFixed(2)}g</IonLabel>
-        <IonLabel>Fats: {fats.toFixed(2)}g</IonLabel>
+
+        <IonAlert
+          isOpen={showResults}
+          onDidDismiss={() => setShowResults(false)}
+          header={'Macronutrient Results'}
+          message={`Carbohydrates: ${carbs.toFixed(2)}g<br/>Protein: ${protein.toFixed(2)}g<br/>Fats: ${fats.toFixed(2)}g`}
+          buttons={['OK']}
+        />
       </IonContent>
     </IonPage>
   );
