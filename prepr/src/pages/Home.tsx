@@ -23,13 +23,13 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Auth0 React Sample</IonTitle>
+          <IonTitle>prepr</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Auth0 React Sample</IonTitle>
+            <IonTitle size="large">prepr</IonTitle>
           </IonToolbar>
         </IonHeader>
         <div className="container">

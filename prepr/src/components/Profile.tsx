@@ -3,7 +3,6 @@ import { IonAvatar } from "@ionic/react";
 
 const Profile: React.FC = () => {
   const { user, isLoading } = useAuth0();
-
   if (isLoading) {
     return <div>Loading ...</div>;
   }
