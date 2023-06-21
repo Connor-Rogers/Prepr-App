@@ -6,6 +6,7 @@ import { Browser } from "@capacitor/browser";
 import { useAuth0 } from "@auth0/auth0-react";
 import { callbackUri } from "./auth.config";
 import Home from "./pages/Home";
+import MacronutrientCalculator from "./pages/MacronutrientCalculator";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -55,6 +56,9 @@ const App: React.FC = () => {
         <IonRouterOutlet>
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/calculator">
+            <MacronutrientCalculator />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
