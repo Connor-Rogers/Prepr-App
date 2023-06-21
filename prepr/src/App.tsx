@@ -1,12 +1,20 @@
-import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  setupIonicReact,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
+import { Redirect, Route } from "react-router-dom";
 import { App as CapApp } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { callbackUri } from "./auth.config";
 import Home from "./pages/Home";
 import MacronutrientCalculator from "./pages/MacronutrientCalculator";
+import { useEffect } from "react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -26,7 +34,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { useEffect } from "react";
 
 setupIonicReact({
   mode: "md",
@@ -51,21 +58,20 @@ const App: React.FC = () => {
   }, [handleRedirectCallback]);
 
   return (
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/calculator">
-            <MacronutrientCalculator />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
+    <IonReactRouter>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>prepr</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <Route exact path="/calculator" component={MacronutrientCalculator} />
+          <Route exact path="/" component={Home} />
+          <Redirect exact from="*" to="/" />
+        </IonContent>
+      </IonPage>
+    </IonReactRouter>
   );
 };
 
