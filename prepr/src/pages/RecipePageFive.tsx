@@ -1,7 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonLabel } from '@ionic/react';
 import './RecipePage.css';
-import './MacronutrientCalcuator.css'
 const RecipePage = () => {
   return (
     <IonPage>

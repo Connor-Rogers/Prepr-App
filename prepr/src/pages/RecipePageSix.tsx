@@ -2,7 +2,6 @@ import React from "react";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel } from "@ionic/react";
 import recipeImage from "../images/recipe-image6.jpg";
 import "./RecipePage.css";
-import "./MacronutrientCalcuator.css";
 const RecipePage: React.FC = () => {
   return (
     <IonPage>

@@ -10,7 +10,6 @@ import {
 } from "@ionic/react";
 
 import recipeImage from "../images/recipe-image2.jpg"; // Update this to the image of the Gourmet Mushroom Risotto
-import "./MacronutrientCalcuator.css"
 import "./RecipePage.css";
 import MacronutrientCalculator from "./MacronutrientCalculator";
 

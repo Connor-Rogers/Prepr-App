@@ -11,7 +11,6 @@ import {
 
 import recipeImage from "../images/recipe-image1.jpg";
 import "./RecipePage.css";
-import "./MacronutrientCalcuator.css"
 
 const RecipePage: React.FC = () => {
   return (

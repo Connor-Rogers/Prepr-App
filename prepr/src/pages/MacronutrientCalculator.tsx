@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonButton, IonLabel, IonSelect, IonSelectOption, IonItem, IonCol, IonGrid, IonRow } from '@ionic/react';
 import "./MacronutrientCalculator.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
+
 
 const MacronutrientCalculator: React.FC = () => {
   const { isAuthenticated } = useAuth0();
@@ -61,6 +63,27 @@ const MacronutrientCalculator: React.FC = () => {
   }
 
   const { carbs, protein, fats } = calculateMacros();
+
+const { getAccessTokenSilently } = useAuth0();
+
+const handleSubmit = async () => {
+  try {
+    const token = await getAccessTokenSilently();
+    const { carbs, protein, fats } = calculateMacros();
+
+    await axios.post('http://localhost:5000/v1/secure/submit-macros', {
+      carbs,
+      protein,
+      fats
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  } catch (error) {
+    console.error("Error submitting macros:", error);
+  }
+};
   
   if (!isAuthenticated) return null;
   return (
@@ -118,7 +141,7 @@ const MacronutrientCalculator: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        <IonButton expand="full" onClick={calculateMacros}>
+        <IonButton expand="full" onClick={handleSubmit}>
           Calculate
         </IonButton>
         <IonLabel>Carbohydrates: {carbs.toFixed(2)}g</IonLabel>

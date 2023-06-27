@@ -21,6 +21,7 @@ import RecipePageFour from "./pages/RecipePageFour";
 import RecipePageFive from "./pages/RecipePageFive";
 import RecipePageSix from "./pages/RecipePageSix";
 import RecipePageSeven from "./pages/RecipePageSeven";
+import WeekView from "./pages/WeekView";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
