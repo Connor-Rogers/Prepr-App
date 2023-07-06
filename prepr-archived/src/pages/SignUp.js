@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-
+import './App.css';
 export const SignUp = () => {
   const handleSubmit = useCallback(async e => {
     e.preventDefault()
@@ -15,13 +15,15 @@ export const SignUp = () => {
   }, [])
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <input name="email" placeholder="email" type="email" />
-        <input name="password" placeholder="password" type="password" />
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
+    <div className="app-container">
+      <div className="form-container">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSubmit}>
+          <input name="email" placeholder="email" type="email" className="input-field" />
+          <input name="password" placeholder="password" type="password" className="input-field" />
+          <button type="submit" className="submit-button">Sign Up</button>
+        </form>
+      </div>
+    </div>
   )
 }
