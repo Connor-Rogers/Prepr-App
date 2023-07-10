@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,  Redirect } from 'react-router-dom';
-import { Home } from './Home';
+import { Goals } from './Goals';
+import UserProfileForm from './CreateProfile';
 import AuthForm from './AuthForm';
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
@@ -22,7 +23,8 @@ function App() {
   return (
     <AuthContextProvider>
       <Router>
-        <AuthenticatedRoute exact path="/" component={Home} />
+        <AuthenticatedRoute exact path="/goals" component={Goals} />
+        <AuthenticatedRoute exact path="/user" component={UserProfileForm} />``
         <Route exact path="/auth" component={AuthForm} />
       </Router>
     </AuthContextProvider>
