@@ -3,25 +3,37 @@ import { initializeApp } from 'firebase/app'
 import { useState, useEffect, useContext, createContext } from 'react'
 
 export const firebaseApp = initializeApp({
-  apiKey: 'AIzaSyCKEKpLKAad62VwyRx_J9Qe7_3R7o33JIY',
-  authDomain: 'fir-auth-52005.firebaseapp.com',
-  projectId: 'fir-auth-52005',
-  storageBucket: 'fir-auth-52005.appspot.com',
-  messagingSenderId: '986012551982',
-  appId: '1:986012551982:web:63631ad43da7711b8408bf',
-  measurementId: 'G-2FK5XC92GY'
+  apiKey: "AIzaSyBzW1xGFOO-54z0mYcYQXZHsefJTmP9oRM",
+  authDomain: "prepr-391015.firebaseapp.com",
+  databaseURL: "https://prepr-391015-default-rtdb.firebaseio.com",
+  projectId: "prepr-391015",
+  storageBucket: "prepr-391015.appspot.com",
+  messagingSenderId: "911878656087",
+  appId: "1:911878656087:web:31a1354b3baba25b0dd312",
+  measurementId: "G-WMQ5CSK5ZT"
 })
+
 
 export const AuthContext = createContext()
 
 export const AuthContextProvider = props => {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')))
   const [error, setError] = useState()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(), setUser, setError)
+    const unsubscribe = onAuthStateChanged(getAuth(), authUser => {
+      if (authUser) {
+        localStorage.setItem('authUser', JSON.stringify(authUser));
+        setUser(authUser);
+      } else {
+        localStorage.removeItem('authUser');
+        setUser(null);
+      }
+    }, setError)
+
     return () => unsubscribe()
   }, [])
+
   return <AuthContext.Provider value={{ user, error }} {...props} />
 }
 

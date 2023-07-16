@@ -26,7 +26,7 @@ const AuthForm = () => {
     const handleSignup = async () => {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        history.push('/');
+        history.push('/new-profile');
       } catch (e) {
         alert(e.message);
       }
