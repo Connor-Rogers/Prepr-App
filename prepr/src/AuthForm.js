@@ -17,7 +17,7 @@ const AuthForm = () => {
     const handleLogin = async () => {
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        history.push('/Home');
+        history.push('/');
       } catch (e) {
         alert(e.message);
       }
@@ -26,7 +26,7 @@ const AuthForm = () => {
     const handleSignup = async () => {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        history.push('/Goals');
+        history.push('/new-profile');
       } catch (e) {
         alert(e.message);
       }

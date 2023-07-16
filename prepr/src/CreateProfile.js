@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuth } from './firebase';  // adjust this import as necessary
-import './UserProfileForm.css';
+import { useAuthState } from './firebase';  // adjust this import as necessary
+import './CreateProfile.css';
+import { useHistory } from 'react-router-dom';
+
 
 const UserProfileForm = () => {
-  const { user } = useAuth();  // get the currently logged in user
+  const { user } = useAuthState();  // get the currently logged in user
   const [userName, setUserName] = useState("");
   const [userImg, setUserImg] = useState(null);
+  const history = useHistory();
 
   const handleNameChange = (event) => {
     setUserName(event.target.value);
@@ -24,7 +27,7 @@ const UserProfileForm = () => {
       formData.append('name', userName);
       formData.append('image', userImg);
       
-      const response = await axios.post('http://127.0.0.1:5000/profile', formData, {
+      const response = await axios.post('http://127.0.0.1:5000/profile/insert', formData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'
@@ -34,6 +37,8 @@ const UserProfileForm = () => {
       console.log(response.data);
     } catch (error) {
       console.error("Error submitting profile data:", error);
+    } finally{
+      history.push('/new-goals');
     }
   };
 
@@ -45,7 +50,7 @@ const UserProfileForm = () => {
       </label>
       <label>
         Profile picture:
-        <input type="file" onChange={handleImageUpload} />
+        <input type="file" accept="image/*" onChange={handleImageUpload} />
       </label>
       <input type="submit" value="Save" />
     </form>
