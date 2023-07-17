@@ -1,5 +1,3 @@
- /* LandingPage.css */
-
 .app-container {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -25,7 +23,7 @@
 }
 
 .form-container {
-    width: 300px;
+    width: 1600px;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -44,7 +42,7 @@
 }
 
 .submit-button {
-    width: 100%;
+    width: 33%;
     padding: 10px;
     background-color: #4CAF50;
     color: white;
@@ -65,4 +63,43 @@
     cursor: pointer;
     padding-left: 5px;
     text-decoration: underline;
+}
+
+.meal-plan-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 1em 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.meal-plan-day.like {
+    background-color: #a8f888;  /* Light green */
+}
+
+.meal-plan-day.dislike {
+    background-color: #f79a9a;  /* Light red */
+}
+
+.meal-plan-day {
+    flex: 0 0 auto;
+    width: 80vw;
+    max-width: 500px;
+    margin-right: 1em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    scroll-snap-align: start;
+}
+
+.meal-plan-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
 }

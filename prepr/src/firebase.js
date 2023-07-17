@@ -5,7 +5,7 @@ import { useState, useEffect, useContext, createContext } from 'react'
 export const firebaseApp = initializeApp({
   apiKey: "AIzaSyBzW1xGFOO-54z0mYcYQXZHsefJTmP9oRM",
   authDomain: "prepr-391015.firebaseapp.com",
-  databaseURL: "https://prepr-391015-default-rtdb.firebaseio.com",
+  databaseURL: "https://prepr-391015-default-rtdb.firebaseio.com/",
   projectId: "prepr-391015",
   storageBucket: "prepr-391015.appspot.com",
   messagingSenderId: "911878656087",
