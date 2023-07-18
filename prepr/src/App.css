@@ -1,151 +1,115 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f6f8;
-  }
-  
-  .app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .form-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-container h1 {
-    margin-bottom: 20px;
-    font-weight: 400;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #21ce99;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0f1d2d;
-    padding: 10px 30px;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-  }
-  
-  .nav-link:first-child {
-    margin-left: 0;
-  }
-  .app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-  }
-  
-  .form-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .input-field {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .toggle-auth {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .toggle-button {
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
-    padding-left: 5px;
-    text-decoration: underline;
-    display: inline;
-  }
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+}
 
-  .profile-container {
-    position: relative;
-  }
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 20%; /* Adjust this value according to your needs */
+  margin: 0 auto; /* This will center your form if it's width is less than 90% of its container */
   
-  .profile-button {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .profile-button img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .profile-modal {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background: white;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-modal button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
+}
+.form-container h1 {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #1DB954;
+}
+
+.form-container h2 {
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #888888;
+}
+
+.form-style {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+   /* This will center your items on the cross axis, which is horizontal in this case */
+  gap: 20px;
+}
+.center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.form-style input, .form-style select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: black;
+}
+
+.form-style button {
+  padding: 5px 10px;
+  background-color: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-style button:hover {
+  background-color: #1ED760;
+}
+
+.signout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.signout-button:hover {
+  background-color: #1ED760;
+}
+.form-style select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: black;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="%231DB954" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px;
+}
+
+.form-style option {
+  padding: 10px;
+  background-color: #fafafa;
+  color: black;
+}
+.height-input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: black;
+  width: 45%;
+}
+
+.height-input-container {
+  display: flex;
+  justify-content: space-between;
+}

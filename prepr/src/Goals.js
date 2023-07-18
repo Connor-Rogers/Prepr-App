@@ -1,10 +1,9 @@
-import { getAuth, signOut } from 'firebase/auth'
-import { useAuthState } from './firebase'
+import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from './firebase';
 import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-
 
 export const Goals = () => {
   const { user } = useAuthState();
@@ -15,7 +14,6 @@ export const Goals = () => {
   const [activityLevel, setActivityLevel] = useState('');
   const [goal, setGoal] = useState('');
   const [age, setAge] = useState('');
- 
 
   const history = useHistory();
 
@@ -36,12 +34,10 @@ export const Goals = () => {
           'Authorization': `Bearer ${idToken}`
         }
       });
-  
       console.log(response.data);
     } catch (error) {
       console.error("Error submitting profile data:", error);
-    }
-    finally{
+    } finally {
       history.push('/');
     }
   };
@@ -49,10 +45,13 @@ export const Goals = () => {
   return (
     <div className="app-container">
       <div className="form-container">
-        <h1>Welcome {user?.email}</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="number"  min="1" step="1" placeholder="Height(ft)" value={heightft} onChange={(e) => setHeightft(e.target.value)} />
-          <input type="number" min="1" step="1" placeholder="Height(in)" value={heightin} onChange={(e) => setHeightin(e.target.value)} />
+        <h1>Signup</h1>
+        <h2>Create Goal Specific Recipes</h2>
+        <form onSubmit={handleSubmit} className="form-style">
+        <div className="height-input-container">
+  <input type="number" min="1" step="1" placeholder="Height(ft)" value={heightft} onChange={(e) => setHeightft(e.target.value)} className="height-input" />
+  <input type="number" min="1" step="1" placeholder="Height(in)" value={heightin} onChange={(e) => setHeightin(e.target.value)} className="height-input" />
+</div>
           <input type="number" min="1" step="1" placeholder="Weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
           <input type="number" min="1" step="1" placeholder="Age" value={age} onChange={(e) => setAge(e.target.value)} />
           <select value={gender} onChange={(e) => setGender(e.target.value)}>
@@ -74,9 +73,11 @@ export const Goals = () => {
             <option value="lose">Lose Weight</option>
             <option value="gain">Gain Weight</option>
           </select>
-          <button type="submit">Submit</button>
+          <div className="center-button">
+            <button type="submit" className="submit-button">Update My Goals</button>
+          </div>
+
         </form>
-        <button className="submit-button" onClick={() => signOut(getAuth())}>Sign out</button>
       </div>
     </div>
   );
