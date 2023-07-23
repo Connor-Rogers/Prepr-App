@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuthState } from './firebase';  // adjust this import as necessary
+import { useAuthState } from './firebase'; // adjust this import as necessary
 import { useHistory } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useDropzone } from 'react-dropzone';
 import './CreateRecipe.css';
 
 const CreateRecipeForm = () => {
   const { user } = useAuthState();  // get the currently logged in user
   const history = useHistory();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, control, formState: { errors }, watch } = useForm();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "ingredients"
+  });
 
   const [photos, setPhotos] = useState([]);
 
@@ -26,22 +30,35 @@ const CreateRecipeForm = () => {
     try {
       const idToken = await user.getIdToken();
       const formData = new FormData();
-
+      console.log(data);
+      data.ingredients = watch('ingredients');
       Object.keys(data).forEach(key => {
-        formData.append(key, data[key]);
+        if (Array.isArray(data[key])) {
+          data[key].forEach((val, index) => {
+            if (typeof val === 'object' && val !== null) {
+              Object.keys(val).forEach(subKey => {
+                formData.append(`${key}[${index}][${subKey}]`, val[subKey]);  // updated
+              });
+            } else {
+              formData.append(`${key}[]`, val);
+            }
+          });
+        } else {
+          formData.append(key, data[key]);
+        }
       });
 
       photos.forEach((photo, index) => {
-        formData.append(`photos[${index}]`, photo);
+        formData.append(`photos[]`, photo);
       });
-      
-      const response = await axios.post('http://127.0.0.1:5000/recipe/insert', formData, {
+
+      const response = await axios.post('http://127.0.0.1:5000/recipe/create', formData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'
         }
       });
-  
+
       console.log(response.data);
       history.push('/new-recipes');
     } catch (error) {
@@ -56,11 +73,29 @@ const CreateRecipeForm = () => {
         <input {...register("title", { required: true })} />
       </label>
       {errors.title && <p>This field is required</p>}
+      {fields.map((item, index) => (
+        <div key={item.id} className="ingredient-row">
+          <label>
+            Ingredient:
+            <input
+              {...register(`ingredients[${index}].ingredient`, { required: true })}
+              defaultValue={item.ingredient}
+            />
+          </label>
+          <label>
+            Quantity:
+            <input
+              {...register(`ingredients[${index}].quantity`, { required: true })}
+              defaultValue={item.quantity}
+            />
+          </label>
+          <button type="button" className="remove-ingredient-button" onClick={() => remove(index)}>Remove</button>
+        </div>
+      ))}
+      <button type="button" className="add-ingredient-button" onClick={() => append({ ingredient: "", quantity: "" })}>
+  Add Ingredient
+    </button>
 
-      <label>
-        Ingredients and Quantities:
-        <textarea {...register("ingredients", { required: true })} />
-      </label>
       {errors.ingredients && <p>This field is required</p>}
 
       <label>

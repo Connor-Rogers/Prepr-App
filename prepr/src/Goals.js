@@ -1,9 +1,9 @@
-import { getAuth, signOut } from 'firebase/auth';
 import { useAuthState } from './firebase';
 import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import './Goals.css'
 
 export const Goals = () => {
   const { user } = useAuthState();
