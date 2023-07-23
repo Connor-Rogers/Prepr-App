@@ -1,7 +1,0 @@
-{
-  "name": "prepr",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}
