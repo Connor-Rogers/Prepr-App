@@ -1,0 +1,91 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
+  
+.recipe-view {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+  
+.recipe-view h2, .recipe-view h3 {
+    font-weight: 500;
+    color: #1DB954;
+}
+  
+.recipe-view h2 {
+    margin-bottom: 10px;
+}
+  
+.recipe-view h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.recipe-view p {
+    margin-top: 5px;
+    color: #888888;
+}
+  
+.recipe-view ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+  
+.recipe-view li {
+    margin-bottom: 5px;
+}
+  
+.recipe-view img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.photos-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.photos-container div {
+    flex: 0 1 calc(25% - 20px);
+    margin: 10px;
+}
+
+.recipe-view h3:last-of-type {
+    margin-bottom: 0;
+}
+
+.recipe-view button {
+    font-weight: 400;
+    font-size: small;
+    padding: 5px 10px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-end;
+    margin-top: 20px;
+}
+  
+.recipe-view button:hover {
+    background-color: #1ED760;
+}
+.ingredients {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #888888;
+}

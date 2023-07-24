@@ -5,6 +5,8 @@ import UserProfileForm from './CreateProfile';
 import AuthForm from './AuthForm';
 import { Home } from './Home';
 import ProfileButton from './ProfileButton';
+import RecipeView from './ViewRecipe';
+
 
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
@@ -44,6 +46,7 @@ function App() {
           <AuthenticatedRoute exact path="/new-goals" component={Goals} />
           <AuthenticatedRoute exact path="/new-profile" component={UserProfileForm} />
           <AuthenticatedRoute exact path="/" component={Home} />
+          <Route path="/recipe/:document_id" component={RecipeView} />
           <Route exact path="/auth" component={AuthForm} />
         </Layout>
       </Router>
