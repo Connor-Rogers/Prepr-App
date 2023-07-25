@@ -14,7 +14,8 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    align-items: left;
+    justify-content: space-between
 }
   
 .recipe-view h2, .recipe-view h3 {
@@ -67,6 +68,7 @@ body {
 }
 
 .recipe-view button {
+    margin: 0 5px;
     font-weight: 400;
     font-size: small;
     padding: 5px 10px;
@@ -89,3 +91,8 @@ body {
     padding: 0;
     color: #888888;
 }
+.Button-Container {
+    display: flex;
+    align-items: right;
+  }
+  

@@ -43,7 +43,7 @@ const ProfileButton = () => {
     };
 
     fetchData();
-  }, [user]); 
+  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -55,11 +55,11 @@ const ProfileButton = () => {
   }
 
   const handleAccountRedirect = () => {
-    history.push('/account');
+    history.push('/profile');
   }
   const handleHomeRedirect = () => {
     history.push('/');
-    }
+  }
 
 
   const toggleModal = () => {
@@ -71,12 +71,12 @@ const ProfileButton = () => {
       <div></div>
       <div className="prepr-title" onClick={handleHomeRedirect}>Prepr</div>
       {user ? (
-        <button onClick={toggleModal} className="profile-button" style={{justifySelf: 'end'}}>
+        <button onClick={toggleModal} className="profile-button" style={{ justifySelf: 'end' }}>
           <img src={profileData?.imageUrl || user?.photoURL} alt="Profile" />
           <span>{profileData?.name || user?.displayName}</span>
         </button>
       ) : (
-        <div style={{justifySelf: 'end'}}></div>  // Empty div for when the user is not logged in
+        <div style={{ justifySelf: 'end' }}></div>  // Empty div for when the user is not logged in
       )}
       {modalOpen && (
         <div className="profile-modal">

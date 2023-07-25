@@ -14,7 +14,32 @@ const RecipeView = () => {
     const { user } = useAuthState();
     const [showEditModal, setShowEditModal] = useState(false);
     const [isAuthor, setIsAuthor] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
 
+    useEffect(() => {
+        // Fetch likes for the recipe
+        const fetchLikes = async () => {
+
+            try {
+                const idToken = await user.getIdToken();
+                const response = await axios.get(
+                    `http://127.0.0.1:5000/recipe/${document_id}/like`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${idToken}`,
+                        },
+                    }
+                );
+                const likesData = response.data;
+                setLikesCount(likesData.likes.length);
+                setLiked(likesData.likes.includes(user.uid));
+            } catch (error) {
+                console.error('Error fetching likes:', error);
+            }
+        };
+        fetchLikes();
+    }, [document_id, user]);
 
     useEffect(() => {
         const fetchRecipeData = async () => {
@@ -53,6 +78,29 @@ const RecipeView = () => {
         fetchRecipeData();
     }, [document_id, user]);
 
+    const handleLike = async () => {
+        try {
+            const idToken = await user.getIdToken();
+            const likeStatus = !liked; // Toggle the like status
+            const response = await axios.post(
+                `http://127.0.0.1:5000/recipe/${document_id}/like`,
+                { like: likeStatus },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${idToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            setLiked(likeStatus);
+            setLikesCount(prevCount => likeStatus ? prevCount + 1 : prevCount - 1);
+            // Handle the response or update the 'likes' count as needed
+        } catch (error) {
+            console.error('Error updating like status:', error);
+        }
+    };
+
+
     useEffect(() => {
         if (recipeData && user) {
             setIsAuthor(recipeData.author === user.uid);
@@ -62,6 +110,20 @@ const RecipeView = () => {
     const handleUpdateData = (updatedRecipe) => {
         setRecipeData(updatedRecipe);
     };
+    const handleDeleteRecipe = async () => {
+        try {
+            const idToken = await user.getIdToken();
+            await axios.delete(`http://127.0.0.1:5000/recipe/${document_id}`, {
+                headers: {
+                    'Authorization': `Bearer ${idToken}`,
+                },
+            });
+            // Redirect or show a success message after successful deletion
+        } catch (error) {
+            console.error('Error deleting recipe:', error);
+            // Show an error message if deletion fails
+        }
+    };
 
     if (!recipeData || !username) {
         return <div>Loading...</div>;
@@ -70,9 +132,13 @@ const RecipeView = () => {
     return (
         <div className="recipe-view">
             {isAuthor && (
-                <button onClick={() => setShowEditModal(true)}>
-                    Edit
-                </button>
+                <div className="Button-Container">
+                    <button onClick={() => setShowEditModal(true)}>
+                        Edit
+                    </button>
+                    <button onClick={handleDeleteRecipe}>Delete</button>
+                </div>
+
             )}
             {showEditModal && (
                 <EditRecipeModal
@@ -85,6 +151,9 @@ const RecipeView = () => {
                     setModalIsOpen={setShowEditModal}
                 />
             )}
+            <button onClick={handleLike}>{liked ? 'Unlike' : 'Like'}</button>
+            <p>{likesCount} {likesCount === 1 ? 'Like' : 'Likes'}</p>
+
             <h2>{recipeData.title}</h2>
             <h3>Submitted by: {username}</h3>
             <p>Calories: {recipeData.calories}</p>
