@@ -7,7 +7,7 @@ import { Home } from './Home';
 import ProfileButton from './ProfileButton';
 import RecipeView from './ViewRecipe';
 import UserProfilePage from './UserProfilePage';
-
+import MealPlanPage from './MealPlanner';
 
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
@@ -48,7 +48,8 @@ function App() {
           <AuthenticatedRoute exact path="/new-profile" component={UserProfileForm} />
           <AuthenticatedRoute exact path="/profile" component={UserProfilePage} />
           <AuthenticatedRoute exact path="/" component={Home} />
-          <Route path="/recipe/:document_id" component={RecipeView} />
+          <AuthenticatedRoute path="/recipe/:document_id" component={RecipeView} />
+          <AuthenticatedRoute path="/meal-plan" component={MealPlanPage} />
           <Route exact path="/auth" component={AuthForm} />
         </Layout>
       </Router>
