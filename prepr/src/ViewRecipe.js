@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useAuthState } from './firebase';
 import './ViewRecipe.css';
 import EditRecipeModal from './EditModal'; // import the new component
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RecipeView = () => {
     const { document_id } = useParams();
@@ -16,7 +18,6 @@ const RecipeView = () => {
     const [isAuthor, setIsAuthor] = useState(false);
     const [liked, setLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
-
     useEffect(() => {
         // Fetch likes for the recipe
         const fetchLikes = async () => {
@@ -40,7 +41,26 @@ const RecipeView = () => {
         };
         fetchLikes();
     }, [document_id, user]);
-
+    const handleAddToMealPlan = async () => {
+        try {
+            const idToken = await user.getIdToken();
+            const response = await axios.post(
+                `http://127.0.0.1:5000/meal_plan/${user.uid}/recipe/${document_id}`,
+                {},
+                {
+                    headers: {
+                        'Authorization': `Bearer ${idToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            // Show a success message
+            toast.success(response.data.message);
+        } catch (error) {
+            // Show an error message
+            toast.error('Error adding recipe to meal plan: ' + error.message);
+        }
+    };
     useEffect(() => {
         const fetchRecipeData = async () => {
             try {
@@ -131,6 +151,7 @@ const RecipeView = () => {
 
     return (
         <div className="recipe-view">
+            <ToastContainer />
             {isAuthor && (
                 <div className="Button-Container">
                     <button onClick={() => setShowEditModal(true)}>
@@ -153,6 +174,8 @@ const RecipeView = () => {
             )}
             <button onClick={handleLike}>{liked ? 'Unlike' : 'Like'}</button>
             <p>{likesCount} {likesCount === 1 ? 'Like' : 'Likes'}</p>
+            <button onClick={handleAddToMealPlan}>Add to Meal Plan</button>
+
 
             <h2>{recipeData.title}</h2>
             <h3>Submitted by: {username}</h3>

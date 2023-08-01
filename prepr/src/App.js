@@ -12,6 +12,7 @@ import MealPlanPage from './MealPlanner';
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
 import CreateRecipeForm from './CreateRecipe';
+import SearchRecipe from './SearchRecipe';
 
 const AuthenticatedRoute = ({ component: C, ...props }) => {
   const { isAuthenticated } = useAuthState();
@@ -47,9 +48,10 @@ function App() {
           <AuthenticatedRoute exact path="/new-goals" component={Goals} />
           <AuthenticatedRoute exact path="/new-profile" component={UserProfileForm} />
           <AuthenticatedRoute exact path="/profile" component={UserProfilePage} />
+          <AuthenticatedRoute exact path="/search" component={SearchRecipe} />
           <AuthenticatedRoute exact path="/" component={Home} />
           <AuthenticatedRoute path="/recipe/:document_id" component={RecipeView} />
-          <AuthenticatedRoute path="/meal-plan" component={MealPlanPage} />
+          <AuthenticatedRoute exact path="/meal-plan" component={MealPlanPage} />
           <Route exact path="/auth" component={AuthForm} />
         </Layout>
       </Router>
