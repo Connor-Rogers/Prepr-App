@@ -8,6 +8,7 @@ import ProfileButton from './ProfileButton';
 import RecipeView from './ViewRecipe';
 import UserProfilePage from './UserProfilePage';
 import MealPlanPage from './MealPlanner';
+import Landing from './Landing';
 
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
@@ -29,7 +30,7 @@ const AuthenticatedRoute = ({ component: C, ...props }) => {
 
 const Layout = ({ children }) => {
   const location = useLocation(); // added this line
-  const hiddenRoutes = ['/auth', '/new-goal', '/new-profile'];
+  const hiddenRoutes = ['/auth', '/new-goal', '/new-profile', '/'];
 
   return (
     <div>
@@ -49,9 +50,10 @@ function App() {
           <AuthenticatedRoute exact path="/new-profile" component={UserProfileForm} />
           <AuthenticatedRoute exact path="/profile" component={UserProfilePage} />
           <AuthenticatedRoute exact path="/search" component={SearchRecipe} />
-          <AuthenticatedRoute exact path="/" component={Home} />
+          <AuthenticatedRoute exact path="/home" component={Home} />
           <AuthenticatedRoute path="/recipe/:document_id" component={RecipeView} />
           <AuthenticatedRoute exact path="/meal-plan" component={MealPlanPage} />
+          <Route exact path="/" component={Landing} />
           <Route exact path="/auth" component={AuthForm} />
         </Layout>
       </Router>
