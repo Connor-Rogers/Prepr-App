@@ -17,7 +17,7 @@ const AuthForm = () => {
     const handleLogin = async () => {
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        history.push('/');
+        history.push('/home');
       } catch (e) {
         alert(e.message);
       }
