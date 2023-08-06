@@ -9,6 +9,7 @@ import RecipeView from './ViewRecipe';
 import UserProfilePage from './UserProfilePage';
 import MealPlanPage from './MealPlanner';
 import Landing from './Landing';
+import Pantry from './Pantry';
 
 import { AuthContextProvider, useAuthState } from './firebase';
 import './App.css';
@@ -53,6 +54,7 @@ function App() {
           <AuthenticatedRoute exact path="/home" component={Home} />
           <AuthenticatedRoute path="/recipe/:document_id" component={RecipeView} />
           <AuthenticatedRoute exact path="/meal-plan" component={MealPlanPage} />
+          <AuthenticatedRoute exact path="/pantry" component={Pantry} />
           <Route exact path="/" component={Landing} />
           <Route exact path="/auth" component={AuthForm} />
         </Layout>
