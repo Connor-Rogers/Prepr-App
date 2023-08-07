@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import axios from 'axios';
 import './ProfileButton.css';
+import image from "./Prepr-White.png"
 
 const ProfileButton = () => {
   const { user } = useAuthState();
@@ -121,8 +122,8 @@ const ProfileButton = () => {
       <button onClick={toggleNavMenu} className="nav-button">
         ☰
       </button>
-      <div className="prepr-title-container">
-        <div className="prepr-title" onClick={handleHomeRedirect}>Prepr</div>
+      <div className="prepr-logo-container" onClick={handleHomeRedirect}>
+        <img src={image} alt="Prepr Logo" className="prepr-logo" />
       </div>
       <div className="profile-button-container" ref={modalRef}>
         {user ? (
