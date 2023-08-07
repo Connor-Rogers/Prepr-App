@@ -39,7 +39,8 @@ const AuthForm = () => {
       handleSignup();
     }
   };
-  const handleForgotPassword = async () => {
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
     if (!email) {
       alert('Please enter your email first.');
     } else {
@@ -76,6 +77,7 @@ const AuthForm = () => {
           {isLogin && (
             <div className="forgot-password-container">
               <button
+                type="button"
                 className="forgot-password-button"
                 onClick={handleForgotPassword}
               >

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from './firebase';
 import { useHistory } from 'react-router-dom';
-
+import "./Home.css"
 export const Home = () => {
   const { user } = useAuthState();
   const [recipes, setRecipes] = useState(null);
@@ -32,39 +32,52 @@ export const Home = () => {
     }
   }
   const fetchRecipes = async () => {
-    const idToken = await user.getIdToken();
-    const response = await fetch(`http://127.0.0.1:5000/gen3`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${idToken}`,
-        'Content-Type': 'application/json'
-      },
-    });
+    if (user) {
+      try {
+        const idToken = await user.getIdToken();
+        const response = await fetch(`http://127.0.0.1:5000/gen3`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${idToken}`,
+            'Content-Type': 'application/json'
+          },
+        });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    const data = await response.json();
-    setRecipes(Object.values(data));  // Convert the object values into a list
+        const data = await response.json();
+        setRecipes(Object.values(data));  // Convert the object values into a list
+      } catch (error) {
+        console.log('There was a problem fetching the recipes:', error);
+        // You can set recipes to an empty array or handle this however else you'd like.
+        setRecipes([]);
+      }
+    } else {
+      console.log('User not authenticated');
+    }
   };
   useEffect(() => {
     fetchRecipes();
-  },);
+  }, [user]);
 
 
   return (
-    <div className="home-container">
+    <div className="home-container app-container">
       <h1>Welcome to Prepr</h1>
       <p>Your solution to easy meal planning!</p>
 
       {recipes ? (
         <div className="recipe-grid">
           {recipes.map((recipe, index) => (
-            <div className="recipe-card" key={index}>
+            <div className="recipe-card form-container" key={index}>
               <h2>{recipe.title}</h2>
               <p>Calories: {recipe.calories}</p>
               <p>Fats: {recipe.fats}</p>
               <p>Protein: {recipe.proteins}</p>
-              <p> Carbohydates: {recipe.carbs}</p>
-              <button onClick={() => addRecipe(recipe)}>Add to Recipe</button>
+              <p>Carbohydrates: {recipe.carbs}</p>
+              <button className="submit-button" onClick={() => addRecipe(recipe)}>Add to Recipe</button>
             </div>
           ))}
         </div>
@@ -74,5 +87,6 @@ export const Home = () => {
     </div>
   );
 };
+
 
 export default Home;
