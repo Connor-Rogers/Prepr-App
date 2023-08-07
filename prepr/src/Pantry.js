@@ -85,21 +85,21 @@ export const Pantry = () => {
 
   const handleDislike = (day) => {
     setLikes({ ...likes, [day]: 'dislike' });
-    handleGenerateNewRecipe(day);
+
   };
 
   const handleLike = (day) => {
     setLikes({ ...likes, [day]: 'like' });
-    handleGenerateNewRecipe(day);
+ 
   };
 
   return (
     <div className="pantry-body">
-      <h3 className="pantry-h3">Meal Plan Options</h3>
-      <input className="pantry-input" type="number" value={days} onChange={(e) => setDays(e.target.value)} min="1" max="7" placeholder="Number of days" />
+      <h3 className="pantry-h3">How many meals to generate</h3>
+      <input className="pantry-input" type="number" value={days} onChange={(e) => setDays(e.target.value)} min="1" max="7" placeholder="Enter number of days (1-7)" />
 
-      <h3 className="pantry-h3">Pantry Items</h3>
-      <input className="pantry-input" type="text" value={newPantryItem} onChange={(e) => setNewPantryItem(e.target.value)} />
+      <h3 className="pantry-h3">Pantry Items, enter your ingredients and their quantity, clicking the + button after each submission</h3>
+      <input className="pantry-input" type="text" value={newPantryItem} onChange={(e) => setNewPantryItem(e.target.value)} placeholder="Enter pantry item" />
       <button className="pantry-button" onClick={handlePantryItemSubmit}>+</button>
 
       <ul className="pantry-ul">
@@ -129,7 +129,7 @@ export const Pantry = () => {
             <div className="pantry-meal-plan-actions">
                 <button onClick={() => handleLike(day)}>✔️</button>
                 <button onClick={() => handleDislike(day)}>❌</button>
-                <button onClick={() => addRecipe(mealPlan[day])}>Add to Recipe</button>
+                <button onClick={() => addRecipe(mealPlan[day])}>Add to Meal Plan</button>
             </div>
           </div>
         ))}

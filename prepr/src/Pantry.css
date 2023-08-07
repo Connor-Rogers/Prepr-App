@@ -1,29 +1,39 @@
 .pantry-body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .pantry-h3 {
   color: #333;
+  margin-top: 20px;
 }
 
 .pantry-input[type="number"],
 .pantry-input[type="text"] {
-  padding: 10px;
+  padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 100%;
-  margin-bottom: 10px;
+  width: 80%;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.pantry-input::placeholder {
+  color: #888;
+  font-size: 14px;
 }
 
 .pantry-button {
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: #007BFF;
+  background-color: #1DB954;
   color: white;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .pantry-button:hover {
@@ -36,10 +46,11 @@
 }
 
 .pantry-li {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
+  background-color: white;
 }
 
 .pantry-meal-plan-container {
@@ -52,14 +63,20 @@
 
 .pantry-meal-plan-day {
   margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 .pantry-meal-plan-day h3 {
   margin: 0;
+  font-size: 18px;
 }
 
 .pantry-meal-plan-day p {
   margin: 10px 0;
+  font-size: 14px;
 }
 
 .pantry-meal-plan-actions {
