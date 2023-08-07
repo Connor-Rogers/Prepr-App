@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useHistory } from 'react-router-dom';
 import './App.css';
+import './AuthForm.css'
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,6 +39,18 @@ const AuthForm = () => {
       handleSignup();
     }
   };
+  const handleForgotPassword = async () => {
+    if (!email) {
+      alert('Please enter your email first.');
+    } else {
+      try {
+        await sendPasswordResetEmail(auth, email);
+        alert('Password reset email sent!');
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+  };
 
   return (
     <div className="app-container">
@@ -60,6 +73,16 @@ const AuthForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {isLogin && (
+            <div className="forgot-password-container">
+              <button
+                className="forgot-password-button"
+                onClick={handleForgotPassword}
+              >
+                Forgot Password
+              </button>
+            </div>
+          )}
           <button type="submit" className="submit-button">
             {isLogin ? 'Login' : 'Sign Up'}
           </button>
