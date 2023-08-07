@@ -59,7 +59,7 @@ const ProfileButton = () => {
   const handleLogout = async () => {
     try {
       await signOut(getAuth());
-      history.push('/auth');
+      history.push('/');
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -69,13 +69,13 @@ const ProfileButton = () => {
   }
 
   const handleHomeRedirect = () => {
-    history.push('/');
+    history.push('/home');
   }
   const handleSearchRedirect = () => {
     history.push('/search');
   }
   const handlePlannerRedirect = () => {
-    history.push('/meal-planner');
+    history.push('/meal-plan');
   }
   const handleCreateRedirect = () => {
     history.push('/new-recipe');

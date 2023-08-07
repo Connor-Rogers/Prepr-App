@@ -68,7 +68,6 @@ const MealPlanPage = () => {
             <h2>Meal Plan</h2>
             {Object.keys(mealPlan).map((day, i) => (
                 <div key={i} className="meal-plan-day">
-                    <h3>Day {day}</h3>
                     {mealPlan[day].map((meal, j) => {
                         console.log(meal);  // log the meal object
                         return (

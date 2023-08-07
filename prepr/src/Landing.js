@@ -13,9 +13,8 @@ export const Landing = () => {
   return (
     <div className="app-container">
       <div className="form-container">
-        <img src={logo} alt="Prepr Logo" className="logo" style={{ height: '80px', margin: 'auto', width: 'auto' }} />  {/* Include the logo */}
-        <h1>Welcome to Prepr</h1>
-        <p>Your solution to easy meal planning!</p>
+        <img src={logo} alt="Prepr Logo" className="logo" style={{ height: '200px', margin: 'auto', width: 'auto' }} />  {/* Include the logo */}
+        <p className='welcome-msg'>Your solution to easy meal planning!</p>
 
         <button className="submit-button" onClick={handleLoginClick}>Login/Sign Up</button>
 

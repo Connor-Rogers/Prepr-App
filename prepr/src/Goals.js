@@ -38,7 +38,7 @@ export const Goals = () => {
     } catch (error) {
       console.error("Error submitting profile data:", error);
     } finally {
-      history.push('/');
+      history.push('/home');
     }
   };
 
@@ -48,10 +48,10 @@ export const Goals = () => {
         <h1>Signup</h1>
         <h2>Create Goal Specific Recipes</h2>
         <form onSubmit={handleSubmit} className="form-style">
-        <div className="height-input-container">
-  <input type="number" min="1" step="1" placeholder="Height(ft)" value={heightft} onChange={(e) => setHeightft(e.target.value)} className="height-input" />
-  <input type="number" min="1" step="1" placeholder="Height(in)" value={heightin} onChange={(e) => setHeightin(e.target.value)} className="height-input" />
-</div>
+          <div className="height-input-container">
+            <input type="number" min="1" step="1" placeholder="Height(ft)" value={heightft} onChange={(e) => setHeightft(e.target.value)} className="height-input" />
+            <input type="number" min="1" step="1" placeholder="Height(in)" value={heightin} onChange={(e) => setHeightin(e.target.value)} className="height-input" />
+          </div>
           <input type="number" min="1" step="1" placeholder="Weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
           <input type="number" min="1" step="1" placeholder="Age" value={age} onChange={(e) => setAge(e.target.value)} />
           <select value={gender} onChange={(e) => setGender(e.target.value)}>

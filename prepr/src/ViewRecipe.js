@@ -7,8 +7,10 @@ import './ViewRecipe.css';
 import EditRecipeModal from './EditModal'; // import the new component
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
 
 const RecipeView = () => {
+    const history = useHistory()
     const { document_id } = useParams();
     const [recipeData, setRecipeData] = useState(null);
     const [recipePhotos, setRecipePhotos] = useState([]);
@@ -102,7 +104,7 @@ const RecipeView = () => {
         try {
             const idToken = await user.getIdToken();
             const likeStatus = !liked; // Toggle the like status
-            const response = await axios.post(
+            await axios.post(
                 `http://127.0.0.1:5000/recipe/${document_id}/like`,
                 { like: likeStatus },
                 {
@@ -141,6 +143,7 @@ const RecipeView = () => {
             // Redirect or show a success message after successful deletion
         } catch (error) {
             console.error('Error deleting recipe:', error);
+            history.push("/home")
             // Show an error message if deletion fails
         }
     };
@@ -197,7 +200,7 @@ const RecipeView = () => {
             <div className="photos-container">
                 {recipePhotos.map((photo, index) => (
                     <div key={index}>
-                        <img src={photo} alt={`Photo ${index}`} />
+                        <img src={photo} alt="Recipe" />
                     </div>
                 ))}
             </div>

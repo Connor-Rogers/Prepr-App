@@ -30,7 +30,6 @@ const CreateRecipeForm = () => {
     try {
       const idToken = await user.getIdToken();
       const formData = new FormData();
-      console.log(data);
       data.ingredients = watch('ingredients');
       Object.keys(data).forEach(key => {
         if (Array.isArray(data[key])) {
@@ -58,9 +57,11 @@ const CreateRecipeForm = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
-      console.log(response.data);
-      history.push('/new-recipes');
+      const data = await response.json();
+      if (data.message === "Recipe created successfully") {
+        history.push(`/recipe/${data.recipe_id}`);
+        // Handle the success case if needed
+      }
     } catch (error) {
       console.error("Error submitting recipe data:", error);
     }
@@ -93,8 +94,8 @@ const CreateRecipeForm = () => {
         </div>
       ))}
       <button type="button" className="add-ingredient-button" onClick={() => append({ ingredient: "", quantity: "" })}>
-  Add Ingredient
-    </button>
+        Add Ingredient
+      </button>
 
       {errors.ingredients && <p>This field is required</p>}
 
@@ -128,7 +129,7 @@ const CreateRecipeForm = () => {
       </label>
       {errors.proteins && <p>This field is required</p>}
 
-      <div {...getRootProps({className: 'dropzone'})}>
+      <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some photos here, or click to select photos</p>
       </div>
