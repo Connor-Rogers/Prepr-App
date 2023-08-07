@@ -113,11 +113,17 @@ export const Pantry = () => {
         {Object.keys(mealPlan).map((day) => (
           <div className={`meal-plan-day ${likes[day]}`} key={day}>
             <h3>{day}</h3>
-            <p>{mealPlan[day]}</p>
+            <h4>{mealPlan[day].title}</h4>
+            <p>Ingredients: {mealPlan[day].ingredients.join(', ')}</p>
+            <p>Instructions: {mealPlan[day].instructions}</p>
+            <p>Calories: {mealPlan[day].calories}</p>
+            <p>Fats: {mealPlan[day].fats}</p>
+            <p>Carbs: {mealPlan[day].carbs}</p>
+            <p>Proteins: {mealPlan[day].proteins}</p>
             <div className="meal-plan-actions">
-              <button onClick={() => handleLike(day)}>✔️</button>
-              <button onClick={() => handleDislike(day)}>❌</button>
-              <button onClick={() => addRecipe(mealPlan[day])}>Add to Recipe</button>
+                <button onClick={() => handleLike(day)}>✔️</button>
+                <button onClick={() => handleDislike(day)}>❌</button>
+                <button onClick={() => addRecipe(mealPlan[day])}>Add to Recipe</button>
             </div>
           </div>
         ))}
