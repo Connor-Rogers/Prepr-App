@@ -114,7 +114,13 @@ export const Pantry = () => {
           <div className={`pantry-meal-plan-day ${likes[day]}`} key={day}>
             <h3>{day}</h3>
             <h4>{mealPlan[day].title}</h4>
-            <p>Ingredients: {mealPlan[day].ingredients.join(', ')}</p>
+            <ul className="ingredientsPantry">
+                {mealPlan[day].ingredients.map((ingredient, index) => (
+                    <li key={index}>
+                        {ingredient.ingredient} - {ingredient.quantity}
+                    </li>
+                ))}
+            </ul>
             <p>Instructions: {mealPlan[day].instructions}</p>
             <p>Calories: {mealPlan[day].calories}</p>
             <p>Fats: {mealPlan[day].fats}</p>
