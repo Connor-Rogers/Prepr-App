@@ -1,77 +1,76 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
-  }
-  
-  h3 {
-    color: #333;
-  }
-  
-  input[type="number"],
-  input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .meal-plan-container {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-  }
-  
-  .meal-plan-day {
-    margin-bottom: 20px;
-  }
-  
-  .meal-plan-day h3 {
-    margin: 0;
-  }
-  
-  .meal-plan-day p {
-    margin: 10px 0;
-  }
-  
-  .meal-plan-actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .meal-plan-day.like {
-    background-color: #d4edda;
-  }
-  
-  .meal-plan-day.dislike {
-    background-color: #f8d7da;
-  }
-  
+.pantry-body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.pantry-h3 {
+  color: #333;
+}
+
+.pantry-input[type="number"],
+.pantry-input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.pantry-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+.pantry-button:hover {
+  background-color: #0056b3;
+}
+
+.pantry-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pantry-li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.pantry-meal-plan-container {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.pantry-meal-plan-day {
+  margin-bottom: 20px;
+}
+
+.pantry-meal-plan-day h3 {
+  margin: 0;
+}
+
+.pantry-meal-plan-day p {
+  margin: 10px 0;
+}
+
+.pantry-meal-plan-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pantry-meal-plan-day.like {
+  background-color: #d4edda;
+}
+
+.pantry-meal-plan-day.dislike {
+  background-color: #f8d7da;
+}
