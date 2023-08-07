@@ -80,6 +80,9 @@ const ProfileButton = () => {
   const handleCreateRedirect = () => {
     history.push('/new-recipe');
   }
+  const handlePantryRedirect = () => {
+    history.push('/pantry');
+  }
 
 
   const toggleProfile = () => {
@@ -152,6 +155,7 @@ const ProfileButton = () => {
         <button onClick={handlePlannerRedirect}>Meal Plan</button>
         <button onClick={handleSearchRedirect}>Search</button>
         <button onClick={handleCreateRedirect}>Create</button>
+        <button onClick={handlePantryRedirect}>Pantry</button>
       </div>
     </div>
   );
