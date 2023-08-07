@@ -173,3 +173,22 @@
   .profile-modal button:last-child {
     margin-bottom: 0;
   }
+  .prepr-logo-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .prepr-logo {
+    width: 43px;
+    height: auto;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .prepr-logo:hover {
+    opacity: 0.8;
+  }
