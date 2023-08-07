@@ -35,7 +35,7 @@ export const Home = () => {
     if (user) {
       try {
         const idToken = await user.getIdToken();
-        const response = await fetch(`http://127.0.0.1:5000/gen3`, {
+        const response = await fetch(`http://127.0.0.1:5000/gen4`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${idToken}`,
