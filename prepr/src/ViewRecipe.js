@@ -1,10 +1,9 @@
-// RecipeView.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useAuthState } from './firebase';
 import './ViewRecipe.css';
-import EditRecipeModal from './EditModal'; // import the new component
+import EditRecipeModal from './EditModal';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
@@ -116,7 +115,6 @@ const RecipeView = () => {
             );
             setLiked(likeStatus);
             setLikesCount(prevCount => likeStatus ? prevCount + 1 : prevCount - 1);
-            // Handle the response or update the 'likes' count as needed
         } catch (error) {
             console.error('Error updating like status:', error);
         }
@@ -140,11 +138,9 @@ const RecipeView = () => {
                     'Authorization': `Bearer ${idToken}`,
                 },
             });
-            // Redirect or show a success message after successful deletion
         } catch (error) {
             console.error('Error deleting recipe:', error);
             history.push("/home")
-            // Show an error message if deletion fails
         }
     };
 

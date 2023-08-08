@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuthState } from './firebase'; // adjust this import as necessary
+import { useAuthState } from './firebase';
 import { useHistory } from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 import { useDropzone } from 'react-dropzone';
 import './CreateRecipe.css';
 
 const CreateRecipeForm = () => {
-  const { user } = useAuthState();  // get the currently logged in user
+  const { user } = useAuthState();
   const history = useHistory();
   const { register, handleSubmit, control, formState: { errors }, watch } = useForm();
   const { fields, append, remove } = useFieldArray({
@@ -36,7 +36,7 @@ const CreateRecipeForm = () => {
           data[key].forEach((val, index) => {
             if (typeof val === 'object' && val !== null) {
               Object.keys(val).forEach(subKey => {
-                formData.append(`${key}[${index}][${subKey}]`, val[subKey]);  // updated
+                formData.append(`${key}[${index}][${subKey}]`, val[subKey]);
               });
             } else {
               formData.append(`${key}[]`, val);

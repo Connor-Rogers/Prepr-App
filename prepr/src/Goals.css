@@ -3,13 +3,13 @@
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 20%; /* Adjust this value according to your needs */
-    margin: 0 auto; /* 
+    max-width: 20%; 
+    margin: 0 auto; 
+}
 .form-style {
     display: flex;
     flex-direction: column;
     justify-content: center;
-     /* This will center your items on the cross axis, which is horizontal in this case */
     gap: 20px;
   }
   .center-button {

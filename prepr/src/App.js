@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, useLocation } from 'react-router-dom'; // added useLocation here
+import { BrowserRouter as Router, Route, Redirect, useLocation } from 'react-router-dom';
 import { Goals } from './Goals';
 import UserProfileForm from './CreateProfile';
 import AuthForm from './AuthForm';
@@ -30,8 +30,8 @@ const AuthenticatedRoute = ({ component: C, ...props }) => {
 };
 
 const Layout = ({ children }) => {
-  const location = useLocation(); // added this line
-  const hiddenRoutes = ['/auth', '/new-goal', '/new-profile', '/'];
+  const location = useLocation();
+  const hiddenRoutes = ['/auth', '/new-goals/signup', '/new-profile', '/'];
 
   return (
     <div>
@@ -47,7 +47,7 @@ function App() {
       <Router>
         <Layout>
           <AuthenticatedRoute exact path="/new-recipe" component={CreateRecipeForm} />
-          <AuthenticatedRoute exact path="/new-goals" component={Goals} />
+          <AuthenticatedRoute exact path="/new-goals/:text" component={Goals} />
           <AuthenticatedRoute exact path="/new-profile" component={UserProfileForm} />
           <AuthenticatedRoute exact path="/profile" component={UserProfilePage} />
           <AuthenticatedRoute exact path="/search" component={SearchRecipe} />

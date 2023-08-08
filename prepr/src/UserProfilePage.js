@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useAuthState } from './firebase'; // adjust this import as necessary
-import './UserProfilePage.css';
+import { useAuthState } from './firebase';
 import UserProfileForm from './UserProfileForm';
 
 const UserProfilePage = () => {
@@ -39,8 +38,6 @@ const UserProfilePage = () => {
                         profileData={profileData}
                         setProfileData={setProfileData}
                     />
-                    {/* Render fields for goal information */}
-                    {/* For example, you can create a GoalForm component similar to UserProfileForm */}
                 </>
             )}
         </div>

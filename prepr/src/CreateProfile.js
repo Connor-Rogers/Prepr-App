@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuthState } from './firebase';  // adjust this import as necessary
+import { useAuthState } from './firebase';
 import './CreateProfile.css';
 import { useHistory } from 'react-router-dom';
 
@@ -26,19 +26,19 @@ const UserProfileForm = () => {
       const formData = new FormData();
       formData.append('name', userName);
       formData.append('image', userImg);
-      
+
       const response = await axios.post('http://127.0.0.1:5000/profile/insert', formData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'
         }
       });
-  
+
       console.log(response.data);
     } catch (error) {
       console.error("Error submitting profile data:", error);
-    } finally{
-      history.push('/new-goals');
+    } finally {
+      history.push('/new-goals/Signup');
     }
   };
 

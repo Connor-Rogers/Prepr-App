@@ -44,7 +44,7 @@ const MealPlanPage = () => {
 
     useEffect(() => {
         fetchMealPlan(user);
-    }, [user]); // Call fetchMealPlan whenever user changes
+    }, [user]);
 
     const handleRemoveSpecificMeal = async (index, mealIndex) => {
         try {
@@ -69,7 +69,6 @@ const MealPlanPage = () => {
             {Object.keys(mealPlan).map((day, i) => (
                 <div key={i} className="meal-plan-day">
                     {mealPlan[day].map((meal, j) => {
-                        console.log(meal);  // log the meal object
                         return (
                             <div key={j} className="meal-plan-meal">
                                 {meal.title && <h4>{meal.title}</h4>}

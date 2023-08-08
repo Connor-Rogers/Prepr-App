@@ -68,6 +68,9 @@ const ProfileButton = () => {
   const handleAccountRedirect = () => {
     history.push('/profile');
   }
+  const handleGoalRedirect = () => {
+    history.push("/new-goals/Goals")
+  }
 
   const handleHomeRedirect = () => {
     history.push('/home');
@@ -157,6 +160,7 @@ const ProfileButton = () => {
         <button onClick={handleSearchRedirect}>Search</button>
         <button onClick={handleCreateRedirect}>Create</button>
         <button onClick={handlePantryRedirect}>Pantry</button>
+        <button onClick={handleGoalRedirect}>Goals</button>
       </div>
     </div>
   );

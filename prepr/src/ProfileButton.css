@@ -98,22 +98,20 @@
 .navigation-modal button:last-child {
   margin: 0;
 }
-/* Styling for the nav menu */
 .nav-menu {
     position: absolute;
-    top: calc(100% + 5px); /* Position the menu just below the button */
-    left: 0;
+    top: calc(100% + 5px);
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    display: none; /* Hide the navigation menu by default */
+    display: none;
 }
 
 .nav-menu.show {
-    display: block; /* Show the navigation menu when the .show class is added */
+    display: block;
 }
 
 .nav-menu button {
@@ -138,7 +136,7 @@
 }
 .profile-modal {
     position: absolute;
-    top: calc(100% + 15px); /* Increase distance from top */
+    top: calc(100% + 15px);
     right: 0;
     background-color: white;
     border: 1px solid #ccc;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuthState } from './firebase'; // adjust this import as necessary
+import { useAuthState } from './firebase';
 import './CreateProfile.css';
 
 const UserProfileForm = ({ profileData, setProfileData }) => {
-    const { user } = useAuthState(); // get the currently logged in user
+    const { user } = useAuthState();
     const [userName, setUserName] = useState(profileData?.name || '');
     const [userImg, setUserImg] = useState(null);
 
@@ -35,7 +35,6 @@ const UserProfileForm = ({ profileData, setProfileData }) => {
                 }
             );
 
-            // Update the profile data with the new name
             setProfileData({ ...profileData, name: userName });
 
             console.log(response.data);

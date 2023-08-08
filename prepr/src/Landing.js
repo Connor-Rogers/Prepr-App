@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Landing.css';
-import logo from './Prepr-Green.png';  // Path to your logo
+import logo from './Prepr-Green.png';
 
 export const Landing = () => {
   const history = useHistory();

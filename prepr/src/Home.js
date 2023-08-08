@@ -28,7 +28,6 @@ export const Home = () => {
     const data = await response.json();
     if (data.message === "Recipe created successfully") {
       history.push(`/recipe/${data.recipe_id}`);
-      // Handle the success case if needed
     }
   }
   const fetchRecipes = async () => {
@@ -51,7 +50,6 @@ export const Home = () => {
         setRecipes(Object.values(data));  // Convert the object values into a list
       } catch (error) {
         console.log('There was a problem fetching the recipes:', error);
-        // You can set recipes to an empty array or handle this however else you'd like.
         setRecipes([]);
       }
     } else {

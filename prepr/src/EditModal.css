@@ -3,7 +3,7 @@
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 40%; /* Adjust this value according to your needs */
+    max-width: 40%; 
     margin: 0 auto; 
     display: flex;
     flex-direction: column;
@@ -119,10 +119,9 @@
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
-    max-height: 80vh; /* This will make the modal height adapt to the viewport height */
-    overflow-y: auto; /* This will add a scrollbar if the content overflows the container */
+    max-height: 80vh;
+    overflow-y: auto; 
 }
-
 .edit-title {
     font-size: 24px;
     font-weight: bold;

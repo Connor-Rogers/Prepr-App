@@ -4,8 +4,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Goals.css'
+import { useParams } from 'react-router-dom';
 
 export const Goals = () => {
+  const { text } = useParams();
   const { user } = useAuthState();
   const [heightft, setHeightft] = useState('');
   const [heightin, setHeightin] = useState('');
@@ -45,7 +47,7 @@ export const Goals = () => {
   return (
     <div className="app-container">
       <div className="form-container">
-        <h1>Signup</h1>
+        <h1>{text}</h1>
         <h2>Create Goal Specific Recipes</h2>
         <form onSubmit={handleSubmit} className="form-style">
           <div className="height-input-container">
