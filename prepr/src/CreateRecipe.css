@@ -71,7 +71,7 @@
   .recipe-form input[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #1DB954;
     color: white;
     font-size: 18px;
     border: none;
@@ -85,7 +85,7 @@
   .add-ingredient-button {
     margin-top: 10px;
     padding: 10px;
-    background-color: #4CAF50; 
+    background-color: #1DB954;
     color: white; 
     font-size: 18px;
     border: none;
