@@ -39,7 +39,7 @@
   .submit-button {
     width: 100%;
     padding: 15px;  /* Increased padding */
-    background-color: #4CAF50;
+    background-color: #1DB954;
     color: white;
     font-size: 20px;  /* Increased font size */
     font-weight: 500;
@@ -74,7 +74,7 @@
   
   .welcome-msg {
     font-size: 20px;
-    color: #4CAF50; 
+    color: #1DB954; 
     text-align: center;
     font-weight: 600;
     margin-bottom: 30px;  
