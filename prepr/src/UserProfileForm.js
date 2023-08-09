@@ -25,7 +25,7 @@ const UserProfileForm = ({ profileData, setProfileData }) => {
             formData.append('image', userImg);
 
             const response = await axios.post(
-                'http://127.0.0.1:5000/profile/insert',
+                'https://backend.prepr.app/profile/insert',
                 formData,
                 {
                     headers: {

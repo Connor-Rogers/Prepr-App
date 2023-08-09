@@ -23,7 +23,7 @@ export const Goals = () => {
     e.preventDefault();
     try {
       const idToken = await user.getIdToken();
-      const response = await axios.post('http://127.0.0.1:5000/profile/goals', {
+      const response = await axios.post('https://backend.prepr.app/profile/goals', {
         heightin,
         heightft,
         weight,

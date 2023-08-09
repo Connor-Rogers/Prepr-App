@@ -14,7 +14,7 @@ const SearchRecipe = () => {
 
         const idToken = await user.getIdToken();
         const response = await axios.post(
-            `http://127.0.0.1:5000/recipe/search`,
+            `https://backend.prepr.app/recipe/search`,
             {
                 search_term: searchTerm
             },

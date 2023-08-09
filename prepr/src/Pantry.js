@@ -25,7 +25,7 @@ export const Pantry = () => {
 
     const idToken = await user.getIdToken();
 
-    const response = await fetch(`http://127.0.0.1:5000/gen3`, {
+    const response = await fetch(`https://backend.prepr.app/gen3`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,
@@ -41,7 +41,7 @@ export const Pantry = () => {
 
   const addRecipe = async (recipe) => {
     const idToken = await user.getIdToken();
-    const response = await fetch(`http://127.0.0.1:5000/gen/add`, {
+    const response = await fetch(`https://backend.prepr.app/gen/add`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,
@@ -70,7 +70,7 @@ export const Pantry = () => {
     };
     const idToken = await user.getIdToken();
 
-    const response = await fetch(`http://127.0.0.1:5000/genSingle`, {
+    const response = await fetch(`https://backend.prepr.app/genSingle`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,

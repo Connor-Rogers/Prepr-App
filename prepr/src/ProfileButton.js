@@ -26,14 +26,14 @@ const ProfileButton = () => {
         try {
           const idToken = await user.getIdToken();
 
-          const profileDataResponse = await axios.get(`http://127.0.0.1:5000/profile/get`, {
+          const profileDataResponse = await axios.get(`https://backend.prepr.app/profile/get`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${idToken}`
             }
           });
 
-          const profilePhotoResponse = await axios.get(`http://127.0.0.1:5000/profile/get/photo`, {
+          const profilePhotoResponse = await axios.get(`https://backend.prepr.app/profile/get/photo`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${idToken}`

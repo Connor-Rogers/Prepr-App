@@ -41,7 +41,7 @@ const EditRecipeModal = ({ recipeData, user, document_id, handleUpdateData, moda
         const updatedRecipe = { ...recipeData, title, instructions, calories, fats, carbs, proteins, ingredients };
 
         const idToken = await user.getIdToken();
-        await axios.put(`http://127.0.0.1:5000/recipe/${document_id}`, updatedRecipe, {
+        await axios.put(`https://backend.prepr.app/recipe/${document_id}`, updatedRecipe, {
             headers: {
                 'Authorization': `Bearer ${idToken}`,
                 'Content-Type': 'multipart/form-data'
@@ -54,7 +54,7 @@ const EditRecipeModal = ({ recipeData, user, document_id, handleUpdateData, moda
                 formData.append('photos', file);
             });
 
-            await axios.post(`http://127.0.0.1:5000/recipe/${document_id}/photos`, formData, {
+            await axios.post(`https://backend.prepr.app/recipe/${document_id}/photos`, formData, {
                 headers: {
                     'Authorization': `Bearer ${idToken}`,
                     'Content-Type': 'multipart/form-data'
@@ -63,7 +63,7 @@ const EditRecipeModal = ({ recipeData, user, document_id, handleUpdateData, moda
         }
 
         if (photosToRemove.length > 0) {
-            await axios.delete(`http://127.0.0.1:5000/recipe/${document_id}/photos`, {
+            await axios.delete(`https://backend.prepr.app/recipe/${document_id}/photos`, {
                 headers: {
                     'Authorization': `Bearer ${idToken}`
                 },
