@@ -13,7 +13,7 @@ const MealPlanPage = () => {
             console.log("User in fetchMealPlan: ", currentUser);
             const idToken = currentUser.getIdToken ? await currentUser.getIdToken() : null;
             if (idToken) {
-                const response = await axios.get(`http://127.0.0.1:5000/meal_plan/${currentUser.uid}`, {
+                const response = await axios.get(`https://backend.prepr.app/meal_plan/${currentUser.uid}`, {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const MealPlanPage = () => {
                 for (let day in newMealPlan) {
                     for (let i = 0; i < newMealPlan[day].length; i++) {
                         if (newMealPlan[day][i].id) {
-                            const photoResponse = await axios.get(`http://127.0.0.1:5000/recipe/${newMealPlan[day][i].id}/photos`, {
+                            const photoResponse = await axios.get(`https://backend.prepr.app/recipe/${newMealPlan[day][i].id}/photos`, {
                                 headers: {
                                     'Authorization': `Bearer ${idToken}`,
                                     'Content-Type': 'application/json',
