@@ -27,7 +27,7 @@ const UserProfileForm = () => {
       formData.append('name', userName);
       formData.append('image', userImg);
 
-      const response = await axios.post('http://127.0.0.1:5000/profile/insert', formData, {
+      const response = await axios.post('https://backend.prepr.app/profile/insert', formData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'

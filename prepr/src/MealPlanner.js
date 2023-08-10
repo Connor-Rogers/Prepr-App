@@ -50,7 +50,7 @@ const MealPlanPage = () => {
         try {
             if (user) {
                 const idToken = await user.getIdToken();
-                await axios.delete(`http://127.0.0.1:5000/meal_plan/${user.uid}/day/remove/${index}/${mealIndex}`, {
+                await axios.delete(`https://backend.prepr.app/meal_plan/${user.uid}/day/remove/${index}/${mealIndex}`, {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                         'Content-Type': 'application/json',

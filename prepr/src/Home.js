@@ -8,7 +8,7 @@ export const Home = () => {
   const history = useHistory();
   const addRecipe = async (recipe) => {
     const idToken = await user.getIdToken();
-    const response = await fetch(`http://127.0.0.1:5000/gen/add`, {
+    const response = await fetch(`https://backend.prepr.app/gen/add`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,
@@ -34,7 +34,7 @@ export const Home = () => {
     if (user) {
       try {
         const idToken = await user.getIdToken();
-        const response = await fetch(`http://127.0.0.1:5000/gen4`, {
+        const response = await fetch(`https://backend.prepr.app/gen2`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${idToken}`,

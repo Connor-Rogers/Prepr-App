@@ -25,7 +25,7 @@ export const Pantry = () => {
 
     const idToken = await user.getIdToken();
 
-    const response = await fetch(`http://127.0.0.1:5000/gen3`, {
+    const response = await fetch(`https://backend.prepr.app/gen3`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,
@@ -41,7 +41,7 @@ export const Pantry = () => {
 
   const addRecipe = async (recipe) => {
     const idToken = await user.getIdToken();
-    const response = await fetch(`http://127.0.0.1:5000/gen/add`, {
+    const response = await fetch(`https://backend.prepr.app/gen/add`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${idToken}`,
@@ -64,25 +64,6 @@ export const Pantry = () => {
     }
   };
 
-  const handleGenerateNewRecipe = async (day) => {
-    const pantryItemsData = {
-      pantryItems,
-    };
-    const idToken = await user.getIdToken();
-
-    const response = await fetch(`http://127.0.0.1:5000/genSingle`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${idToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(pantryItemsData),
-    });
-
-    const data = await response.json();
-    setMealPlan(prevMealPlan => ({ ...prevMealPlan, [day]: data }));
-  };
-
   const handleDislike = (day) => {
     setLikes({ ...likes, [day]: 'dislike' });
 
@@ -90,7 +71,7 @@ export const Pantry = () => {
 
   const handleLike = (day) => {
     setLikes({ ...likes, [day]: 'like' });
- 
+
   };
 
   return (
@@ -115,11 +96,11 @@ export const Pantry = () => {
             <h3>{day}</h3>
             <h4>{mealPlan[day].title}</h4>
             <ul className="ingredientsPantry">
-                {mealPlan[day].ingredients.map((ingredient, index) => (
-                    <li key={index}>
-                        {ingredient.ingredient} - {ingredient.quantity}
-                    </li>
-                ))}
+              {mealPlan[day].ingredients.map((ingredient, index) => (
+                <li key={index}>
+                  {ingredient.ingredient} - {ingredient.quantity}
+                </li>
+              ))}
             </ul>
             <p>Instructions: {mealPlan[day].instructions}</p>
             <p>Calories: {mealPlan[day].calories}</p>
@@ -127,15 +108,15 @@ export const Pantry = () => {
             <p>Carbs: {mealPlan[day].carbs}</p>
             <p>Proteins: {mealPlan[day].proteins}</p>
             <div className="pantry-meal-plan-actions">
-                <button onClick={() => handleLike(day)}>✔️</button>
-                <button onClick={() => handleDislike(day)}>❌</button>
-                <button onClick={() => addRecipe(mealPlan[day])}>Add to Meal Plan</button>
+              <button onClick={() => handleLike(day)}>✔️</button>
+              <button onClick={() => handleDislike(day)}>❌</button>
+              <button onClick={() => addRecipe(mealPlan[day])}>Add to Meal Plan</button>
             </div>
           </div>
         ))}
       </div>}
     </div>
- );
+  );
 };
 
 export default Pantry;

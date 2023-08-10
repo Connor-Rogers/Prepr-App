@@ -51,7 +51,7 @@ const CreateRecipeForm = () => {
         formData.append(`photos[]`, photo);
       });
 
-      const response = await axios.post('http://127.0.0.1:5000/recipe/create', formData, {
+      const response = await axios.post('https://backend.prepr.app/recipe/create', formData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'

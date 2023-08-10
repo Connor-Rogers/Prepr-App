@@ -26,7 +26,7 @@ const RecipeView = () => {
             try {
                 const idToken = await user.getIdToken();
                 const response = await axios.get(
-                    `http://127.0.0.1:5000/recipe/${document_id}/like`,
+                    `https://backend.prepr.app/recipe/${document_id}/like`,
                     {
                         headers: {
                             'Authorization': `Bearer ${idToken}`,
@@ -46,7 +46,7 @@ const RecipeView = () => {
         try {
             const idToken = await user.getIdToken();
             const response = await axios.post(
-                `http://127.0.0.1:5000/meal_plan/${user.uid}/recipe/${document_id}`,
+                `https://backend.prepr.app/meal_plan/${user.uid}/recipe/${document_id}`,
                 {},
                 {
                     headers: {
@@ -68,14 +68,14 @@ const RecipeView = () => {
                 const idToken = await user.getIdToken();
                 console.log(user);
                 console.log(user.uid);
-                const response = await axios.get(`http://127.0.0.1:5000/recipe/${document_id}`, {
+                const response = await axios.get(`https://backend.prepr.app/recipe/${document_id}`, {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                         'Content-Type': 'multipart/form-data'
                     }
                 });
                 setRecipeData(response.data);
-                const photosResponse = await axios.get(`http://127.0.0.1:5000/recipe/${document_id}/photos`, {
+                const photosResponse = await axios.get(`https://backend.prepr.app/recipe/${document_id}/photos`, {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                         'Content-Type': 'multipart/form-data'
@@ -84,7 +84,7 @@ const RecipeView = () => {
 
                 setRecipePhotos(photosResponse.data.photos);
 
-                const usernameResponse = await axios.get(`http://127.0.0.1:5000/profile/get/username`, {
+                const usernameResponse = await axios.get(`https://backend.prepr.app/profile/get/username`, {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                         'Content-Type': 'multipart/form-data'
@@ -104,7 +104,7 @@ const RecipeView = () => {
             const idToken = await user.getIdToken();
             const likeStatus = !liked; // Toggle the like status
             await axios.post(
-                `http://127.0.0.1:5000/recipe/${document_id}/like`,
+                `https://backend.prepr.app/recipe/${document_id}/like`,
                 { like: likeStatus },
                 {
                     headers: {
@@ -133,7 +133,7 @@ const RecipeView = () => {
     const handleDeleteRecipe = async () => {
         try {
             const idToken = await user.getIdToken();
-            await axios.delete(`http://127.0.0.1:5000/recipe/${document_id}`, {
+            await axios.delete(`https://backend.prepr.app/recipe/${document_id}`, {
                 headers: {
                     'Authorization': `Bearer ${idToken}`,
                 },

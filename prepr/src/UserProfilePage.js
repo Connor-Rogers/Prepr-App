@@ -12,7 +12,7 @@ const UserProfilePage = () => {
         const fetchProfileData = async () => {
             try {
                 const idToken = await user.getIdToken();
-                const response = await axios.get('http://127.0.0.1:5000/profile/get', {
+                const response = await axios.get('https://backend.prepr.app/profile/get', {
                     headers: {
                         'Authorization': `Bearer ${idToken}`,
                     },
