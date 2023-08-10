@@ -61,7 +61,7 @@ const CreateRecipeForm = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      const responseData = await response.json();
+      const responseData = await response.data;
       if (responseData.message === "Recipe created successfully") {
         history.push(`/recipe/${responseData.recipe_id}`);
         // Handle the success case if needed
