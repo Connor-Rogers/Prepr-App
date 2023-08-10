@@ -26,47 +26,50 @@ const CreateRecipeForm = () => {
     }
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     try {
       const idToken = await user.getIdToken();
-      const formData = new FormData();
-      data.ingredients = watch('ingredients');
-      Object.keys(data).forEach(key => {
-        if (Array.isArray(data[key])) {
-          data[key].forEach((val, index) => {
+      const postData = new FormData();
+      if (!formData) {
+        console.error("formData is undefined");
+        return;
+      }
+      formData.ingredients = watch('ingredients');
+      Object.keys(formData).forEach(key => {
+        if (Array.isArray(formData[key])) {
+          formData[key].forEach((val, index) => {
             if (typeof val === 'object' && val !== null) {
               Object.keys(val).forEach(subKey => {
-                formData.append(`${key}[${index}][${subKey}]`, val[subKey]);
+                postData.append(`${key}[${index}][${subKey}]`, val[subKey]);
               });
             } else {
-              formData.append(`${key}[]`, val);
+              postData.append(`${key}[]`, val);
             }
           });
         } else {
-          formData.append(key, data[key]);
+          postData.append(key, formData[key]);
         }
       });
 
       photos.forEach((photo, index) => {
-        formData.append(`photos[]`, photo);
+        postData.append(`photos[]`, photo);
       });
 
-      const response = await axios.post('https://backend.prepr.app/recipe/create', formData, {
+      const response = await axios.post('https://backend.prepr.app/recipe/create', postData, {
         headers: {
           'Authorization': `Bearer ${idToken}`,
           'Content-Type': 'multipart/form-data'
         }
       });
-      const data = await response.json();
-      if (data.message === "Recipe created successfully") {
-        history.push(`/recipe/${data.recipe_id}`);
+      const responseData = await response.json();
+      if (responseData.message === "Recipe created successfully") {
+        history.push(`/recipe/${responseData.recipe_id}`);
         // Handle the success case if needed
       }
     } catch (error) {
       console.error("Error submitting recipe data:", error);
     }
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="recipe-form">
       <label>
